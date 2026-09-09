@@ -10,31 +10,19 @@ function App() {
   return (
     <div>
       <h1>User Information</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
-        <div>
-          <label htmlFor="name">Name: </label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => dispatch(updateName(e.target.value))}
-            placeholder="Enter Name"
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email: </label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => dispatch(updateEmail(e.target.value))}
-            placeholder="Enter Email"
-          />
-        </div>
-      </form>
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => dispatch(updateName(e.target.value))}
+      />
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => dispatch(updateEmail(e.target.value))}
+      />
       <div className="output">
-        <p>Name - {name}</p>
-        <p>Email - {email}</p>
+        <div>Name - {name}</div>
+        <div>Email - {email}</div>
       </div>
     </div>
   );
