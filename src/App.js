@@ -1,45 +1,23 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateName, updateEmail } from './redux/userActions';
 
-function App() {
+export default function App() {
+  const { name, email } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const name = useSelector((state) => state.name);
-  const email = useSelector((state) => state.email);
-
-  const handleNameChange = (e) => {
-    dispatch(updateName(e.target.value));
-  };
-
-  const handleEmailChange = (e) => {
-    dispatch(updateEmail(e.target.value));
-  };
 
   return (
     <div>
       <h1>User Information</h1>
-      <form>
-        <label>
-          Name:
-          <input
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-            placeholder="Enter your name"
-          />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-            placeholder="Enter your email"
-          />
-        </label>
-      </form>
-
+      <input 
+        type="text" 
+        value={name} 
+        onChange={(e) => dispatch({ type: 'SET_NAME', payload: e.target.value })} 
+      />
+      <input 
+        type="email" 
+        value={email} 
+        onChange={(e) => dispatch({ type: 'SET_EMAIL', payload: e.target.value })} 
+      />
       <div className="output">
         <p>Name - {name}</p>
         <p>Email - {email}</p>
@@ -47,5 +25,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
