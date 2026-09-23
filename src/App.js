@@ -1,23 +1,39 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateName, updateEmail } from "./actions/userActions";
 
-export default function App() {
-  const { name, email } = useSelector((state) => state);
+function App() {
   const dispatch = useDispatch();
 
+  const name = useSelector((state) => state.name);
+  const email = useSelector((state) => state.email);
+
   return (
-    <div>
+    <div className="App">
       <h1>User Information</h1>
-      <input 
-        type="text" 
-        value={name} 
-        onChange={(e) => dispatch({ type: 'SET_NAME', payload: e.target.value })} 
-      />
-      <input 
-        type="email" 
-        value={email} 
-        onChange={(e) => dispatch({ type: 'SET_EMAIL', payload: e.target.value })} 
-      />
+
+      <div>
+        <label htmlFor="name">Name: </label>
+        <input
+          id="name"
+          type="text"
+          value={name}
+          onChange={(e) => dispatch(updateName(e.target.value))}
+          placeholder="Enter your name"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="email">Email: </label>
+        <input
+          id="email"
+          type="email"
+          value={email}
+          onChange={(e) => dispatch(updateEmail(e.target.value))}
+          placeholder="Enter your email"
+        />
+      </div>
+
       <div className="output">
         <p>Name - {name}</p>
         <p>Email - {email}</p>
@@ -25,3 +41,5 @@ export default function App() {
     </div>
   );
 }
+
+export default App;
